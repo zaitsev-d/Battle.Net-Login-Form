@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <StartupObject>LoginFormBattleNet.App</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\angle-down-active.png" />
+    <None Remove="Assets\angle-down-deactive.png" />
+    <None Remove="Assets\cog-active.png" />
+    <None Remove="Assets\cog-deactive.png" />
+    <None Remove="Assets\cross-active.png" />
+    <None Remove="Assets\cross-deactive.png" />
+    <None Remove="Assets\globus-active.png" />
+    <None Remove="Assets\globus-deactive.png" />
+    <None Remove="Assets\icon.ico" />
+    <None Remove="Assets\icon.png" />
+    <None Remove="Assets\logo.png" />
+    <None Remove="Assets\wm-active.png" />
+    <None Remove="Assets\wm-deactive.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\angle-down-active.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\angle-down-deactive.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\cog-active.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\cog-deactive.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\cross-active.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\cross-deactive.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\globus-active.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\globus-deactive.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\icon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\wm-active.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\wm-deactive.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
