@@ -11,15 +11,23 @@
   <ItemGroup>
     <None Remove="Assets\angle-down-active.png" />
     <None Remove="Assets\angle-down-deactive.png" />
+    <None Remove="Assets\apple-brands.png" />
+    <None Remove="Assets\check.png" />
+    <None Remove="Assets\circle.png" />
     <None Remove="Assets\cog-active.png" />
     <None Remove="Assets\cog-deactive.png" />
     <None Remove="Assets\cross-active.png" />
     <None Remove="Assets\cross-deactive.png" />
+    <None Remove="Assets\external-link.png" />
+    <None Remove="Assets\facebook-brands.png" />
     <None Remove="Assets\globus-active.png" />
     <None Remove="Assets\globus-deactive.png" />
+    <None Remove="Assets\google-brands.png" />
     <None Remove="Assets\icon.ico" />
     <None Remove="Assets\icon.png" />
     <None Remove="Assets\logo.png" />
+    <None Remove="Assets\question-circle.png" />
+    <None Remove="Assets\signal-slash.png" />
     <None Remove="Assets\wm-active.png" />
     <None Remove="Assets\wm-deactive.png" />
   </ItemGroup>
@@ -29,6 +37,15 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\angle-down-deactive.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\apple-brands.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\check.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\circle.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\cog-active.png">
@@ -43,19 +60,31 @@
     <Resource Include="Assets\cross-deactive.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\external-link.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\facebook-brands.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\globus-active.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\globus-deactive.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\google-brands.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\icon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\icon.png">
+    <Resource Include="Assets\logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\logo.png">
+    <Resource Include="Assets\question-circle.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\signal-slash.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\wm-active.png">

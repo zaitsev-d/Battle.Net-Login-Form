@@ -68,6 +68,65 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="TextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="#FF11141A"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="#FF2D333D"/>
+            <Setter Property="Padding" Value="10,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid x:Name="Root" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True">
+                            <Border x:Name="Background" BorderThickness="1" CornerRadius="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"/>
+                            <ScrollViewer x:Name="PART_ContentHost" BorderThickness="0" Padding="{TemplateBinding Padding}" IsTabStop="False" Background="{x:Null}" TextElement.Foreground="{TemplateBinding Foreground}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF3B3C44"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF3D578C"/>
+                                <Setter Property="Background" Value="#FF0E1116"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PasswordBox" TargetType="PasswordBox">
+            <Setter Property="Background" Value="#FF11141A"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="#FF2D333D"/>
+            <Setter Property="Padding" Value="10,0,0,0"/>
+            <EventSetter Event="PasswordChanged" Handler="OnPasswordChanged"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Grid x:Name="Root" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True">
+                            <Border x:Name="Background" BorderThickness="1" CornerRadius="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"/>
+                            <ScrollViewer x:Name="PART_ContentHost" BorderThickness="0" Padding="{TemplateBinding Padding}" IsTabStop="False" Background="{x:Null}" TextElement.Foreground="{TemplateBinding Foreground}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF3B3C44"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF3D578C"/>
+                                <Setter Property="Background" Value="#FF0E1116"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -81,7 +140,7 @@
             <Polygon Fill="White" Opacity="0.2" Points="107,0,115,7,249,7,257,0" StrokeThickness="0.5" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
-                <Image Name="MinButton" RenderOptions.BitmapScalingMode="HighQuality" Width="13" Height="13" Margin="5" MouseDown="MinButton_MouseDown">
+                <Image Name="MinButton" RenderOptions.BitmapScalingMode="HighQuality" Width="13" Height="13" Margin="5,12,5,5" MouseDown="MinButton_MouseDown">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Setter Property="Source" Value="/Assets/wm-deactive.png"/>
@@ -164,7 +223,7 @@
                         </Image.Style>
                     </Image>
 
-                    <Image RenderOptions.BitmapScalingMode="HighQuality" Width="11" Height="11" Margin="3,0,5,0">
+                    <Image RenderOptions.BitmapScalingMode="HighQuality" Width="9" Height="9" Margin="5,0,5,0">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="/Assets/angle-down-deactive.png"/>
@@ -184,7 +243,7 @@
             </Button>
         </Border>
 
-        <Grid Name="LeftGrid" Grid.Row="2" Width="200" Height="160" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,42,0,0" Visibility="Hidden">
+        <Grid Name="LeftGrid" Panel.ZIndex="999" Grid.Row="2" Width="200" Height="160" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,42,0,0" Visibility="Hidden">
             <Polygon Fill="Black" StrokeThickness="3" Stroke="#FF0C0101"
                      Points="0,8,
                      0,145,
@@ -224,7 +283,7 @@
             </Grid>
         </Grid>
 
-        <Grid Name="RightGrid" Grid.Row="2" Width="310" Height="125" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,42,20,0" Visibility="Hidden">
+        <Grid Name="RightGrid" Panel.ZIndex="999" Grid.Row="2" Width="310" Height="125" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,42,20,0" Visibility="Hidden">
             <Polygon Fill="Black" StrokeThickness="3" Stroke="#FF0C0101" HorizontalAlignment="Center" Margin="1,0,0,0"
                      Points="0,8,
                      0,120,
@@ -245,7 +304,10 @@
             <Grid Width="299" Height="132" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <StackPanel Orientation="Vertical">
                     <Button Style="{StaticResource CbmBtn}">
-                        <TextBlock Text="Use Last Status"/>
+                        <Grid Width="299" Margin="-30,0,0,0">
+                            <TextBlock Margin="30,0,0,0" Text="Use Last Status"/>
+                            <Image RenderOptions.BitmapScalingMode="HighQuality" Margin="10,0,0,0" HorizontalAlignment="Left" Width="4" Height="4" Source="/Assets/circle.png"/>
+                        </Grid>
                     </Button>
                     <Button Style="{StaticResource CbmBtn}">
                         <TextBlock Text="Appear Offline"/>
@@ -257,10 +319,10 @@
                             <Image RenderOptions.BitmapScalingMode="HighQuality" Margin="10,0,0,0" HorizontalAlignment="Left" Width="12" Height="12" Source="/Assets/cog-active.png"/>
                         </Grid>
                     </Button>
-                    <Button Style="{StaticResource CbmBtn}" Margin="0,3,0,0">
+                    <Button Style="{StaticResource CbmBtn}">
                         <Grid Width="299" Margin="-30,0,0,0">
                             <TextBlock Margin="30,0,0,0" Text="Continue Without Logging In"/>
-                            <Image RenderOptions.BitmapScalingMode="HighQuality" Margin="10,0,0,0" HorizontalAlignment="Left" Width="12" Height="12" Source="/Assets/cog-active.png"/>
+                            <Image RenderOptions.BitmapScalingMode="HighQuality" Margin="10,0,0,0" HorizontalAlignment="Left" Width="12" Height="12" Source="/Assets/signal-slash.png"/>
                         </Grid>
                     </Button>
                 </StackPanel>
@@ -298,7 +360,7 @@
             </Border.Style>
             <Button Style="{StaticResource ComboboxButton}" Click="Button_Click_1">
                 <StackPanel Orientation="Horizontal">
-                    <Image RenderOptions.BitmapScalingMode="HighQuality" Width="14" Height="14">
+                    <Image RenderOptions.BitmapScalingMode="HighQuality" Width="12" Height="12">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="/Assets/cog-deactive.png"/>
@@ -317,5 +379,413 @@
                 </StackPanel>
             </Button>
         </Border>
+
+        <TextBox Name="TB1" Grid.Row="2" Style="{StaticResource TextBox}" Margin="25,55,25,0" VerticalAlignment="Top"/>
+        <TextBlock Grid.Row="2" IsHitTestVisible="False" FontSize="14" Text="Email or phone" Margin="37,63,0,0" VerticalAlignment="Top" Foreground="#FF535559">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=TB1}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <PasswordBox Name="TB2" Grid.Row="2" Style="{StaticResource PasswordBox}" Margin="25,100,25,0" VerticalAlignment="Top"/>
+        <TextBlock Name="Watermark" Grid.Row="2" IsHitTestVisible="False" FontSize="14" Text="Password" Margin="37,108,0,0" VerticalAlignment="Top" Foreground="#FF535559"/>
+
+        <ToggleButton Name="TgBtn" Grid.Row="2" Width="140" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                      Margin="25,145,0,0" Content="Keep me logged in" Foreground="#FFACB3BF" FontSize="13">
+            <ToggleButton.Template>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="20" Height="20" HorizontalAlignment="Left" CornerRadius="2" BorderThickness="1" Background="Black">
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="BorderBrush" Value="#FF333842"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="#FF51555C"/>
+                                        </Trigger>
+
+                                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#FF333842"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+
+                                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#FF51555C"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+
+                            <Image RenderOptions.BitmapScalingMode="HighQuality" Margin="4">
+                                <Image.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource 
+                                            AncestorType={x:Type ToggleButton}}}" Value="true">
+                                                <Setter Property="Image.Source" Value="/Assets/check.png"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </Border>
+
+                        <ContentPresenter Content="{TemplateBinding Content}" Margin="10,0,0,0" 
+                                          VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </ToggleButton.Template>
+        </ToggleButton>
+
+        <Image RenderOptions.BitmapScalingMode="HighQuality" Grid.Row="2" Width="12" Height="12" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,21,10,0" Source="/Assets/question-circle.png"/>
+
+        <Border Name="BtnLogin" Grid.Row="2" Height="35" Margin="25,105,25,0" BorderThickness="1" Background="#FF0E3A59">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderBrush" Value="#FF00AEEE"/>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#FF095386"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#FF00AEEE"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Button Content="Log In" FontSize="16" FontFamily="Nud Motoya Aporo Std" Foreground="White">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="#FF0E86CA"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="Border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF00AEEE"/>
+                                        </Trigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="2,2,0,0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FF095386" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+
+                                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FF0E86CA" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Border>
+
+        <Polygon Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Stroke="#FF555860"
+                 Points="0,0,
+                 330,0" Margin="25,0,25,62"/>
+        
+        <TextBlock Grid.Row="2" Text="OR LOG IN WITH" FontSize="13" Foreground="#FF555860" HorizontalAlignment="Center" VerticalAlignment="Bottom" TextAlignment="Center"
+                   Margin="0,0,0,55" Background="#FF1D222C" Width="140" FontWeight="DemiBold"/>
+
+        <Border Name="FooterBtn1" Grid.Row="2" Width="43" Height="43" Margin="0,0,124,3" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                BorderThickness="1" CornerRadius="1">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderBrush" Value="#FF057DFF"/>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#FF095386"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#FF057DFF"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Button>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="#FF057DFF"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="Border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF075DBC"/>
+                                        </Trigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="2,2,0,0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FF095386" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+
+                                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FF057DFF" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <StackPanel Orientation="Horizontal">
+                    <Image RenderOptions.BitmapScalingMode="HighQuality" Width="19" Height="19" Source="/Assets/facebook-brands.png"/>
+                </StackPanel>
+            </Button>
+        </Border>
+
+        <Border Name="FooterBtn2" Grid.Row="2" Width="43" Height="43" Margin="25,0,25,3" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                BorderThickness="1" CornerRadius="1">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#FF095386"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="White"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Button>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="Border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFCECECE"/>
+                                        </Trigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="2,2,0,0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FFCECECE" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+
+                                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="White" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <StackPanel Orientation="Horizontal">
+                    <Image RenderOptions.BitmapScalingMode="HighQuality" Width="19" Height="19" Source="/Assets/google-brands.png"/>
+                </StackPanel>
+            </Button>
+        </Border>
+
+        <Border Name="FooterBtn3" Grid.Row="2" Width="43" Height="43" Margin="124,0,0,3" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                BorderThickness="1" CornerRadius="1">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#FF095386"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="White"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Button>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="Border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FFCECECE"/>
+                                        </Trigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="2,2,0,0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FFCECECE" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+
+                                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="0"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color" To="White" Duration="0:0:0.0002"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <StackPanel Orientation="Horizontal">
+                    <Image RenderOptions.BitmapScalingMode="HighQuality" Width="19" Height="19" Source="/Assets/apple-brands.png"/>
+                </StackPanel>
+            </Button>
+        </Border>
+
+        <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Create a free Blizzard Account" Margin="0,0,0,45" FontSize="16" FontWeight="DemiBold">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Foreground" Value="#FF078AC9"/>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="White" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="#FF078AC9" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0">
+            <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Can't log In?" FontSize="16" FontWeight="DemiBold">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Foreground" Value="#FF078AC9"/>
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="White" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="#FF078AC9" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <Image RenderOptions.BitmapScalingMode="HighQuality" Width="10" Height="10" Margin="7,2,0,0" Source="/Assets/external-link.png"/>
+        </StackPanel>
+
     </Grid>
 </Window>

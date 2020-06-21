@@ -60,5 +60,17 @@ namespace LoginFormBattleNet
             }
             else RightGrid.Visibility = Visibility.Hidden;
         }
+
+        private void OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if(TB2.Password.Length > 0)
+            {
+                Watermark.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Watermark.Visibility = Visibility.Visible;
+            }
+        }
     }
 }
